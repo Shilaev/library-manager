@@ -8,14 +8,13 @@ import java.sql.SQLException;
 public class ClientRowMapper implements RowMapper<Client> {
     @Override
     public Client mapRow(ResultSet rs, int rowNum) throws SQLException {
-        return new Client(
-                rs.getInt("id"),
-                rs.getString("last_name"),
-                rs.getString("first_name"),
-                rs.getString("patronymic_name"),
-                rs.getString("birthday"),
-                rs.getString("phone"),
-                rs.getString("email")
-        );
+        Client newClient = new Client();
+        newClient.setLastName(rs.getString("last_name"));
+        newClient.setFirstName(rs.getString("first_name"));
+        newClient.setPatronymicName(rs.getString("patronymic_name"));
+        newClient.setBirthday(rs.getDate("birthday"));
+        newClient.setPhone(rs.getString("phone"));
+        newClient.setEmail(rs.getString("email"));
+        return newClient;
     }
 }

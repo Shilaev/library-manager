@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/resources/clients/css/clients_list.css" type="text/css">
-    <title>books-list</title>
+    <title>clients-list</title>
 </head>
 <body>
 
@@ -27,7 +27,7 @@
             <td th:text="${client.id}"></td>
             <td th:text="${client.lastName}"></td>
             <td th:text="${client.firstName}"></td>
-            <td th:text="${client.patronymicName == null} ? 'none' : ${client.patronymicName}"></td>
+            <td th:text="${client.patronymicName == null} ? 'null' : ${client.patronymicName}"></td>
             <td th:text="${client.birthday}"></td>
             <td th:text="${client.phone}"></td>
             <td th:text="${client.email}"></td>

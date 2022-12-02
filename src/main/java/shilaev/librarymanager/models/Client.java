@@ -1,22 +1,34 @@
 package shilaev.librarymanager.models;
 
+import java.sql.Date;
+
 public class Client {
     private int id;
     private String lastName;
     private String firstName;
     private String patronymicName;
-    private String birthday;
+    private Date birthday;
     private String phone;
     private String email;
 
-    public Client(int id, String lastName, String firstName, String patronymicalName, String birthday, String phone, String email) {
-        this.id = id;
+    public Client(String lastName, String firstName, String patronymicName, Date birthday, String phone, String email) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.patronymicName = patronymicalName;
+        this.patronymicName = patronymicName;
         this.birthday = birthday;
         this.phone = phone;
         this.email = email;
+    }
+
+    public Client() {
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public int getId() {
@@ -42,15 +54,7 @@ public class Client {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
+    
     public String getPhone() {
         return phone;
     }

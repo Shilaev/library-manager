@@ -4,8 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import shilaev.librarymanager.dao.ClientsDao;
+import shilaev.librarymanager.models.Client;
+
 
 @Controller
 @RequestMapping("/clients")
@@ -21,5 +25,16 @@ public class ClientsController {
     public String getBooksList(Model model) {
         model.addAttribute("clients_list", clientsDao.selectAllClients());
         return "clients_list";
+    }
+
+    @GetMapping("/add-client")
+    public String getAddClientPage(@ModelAttribute("new_client") Client newClient) {
+        return "add_client";
+    }
+
+    @PostMapping("/add-client")
+    public String postNewClient(@ModelAttribute("new_client") Client newClient) {
+        clientsDao.addNewClient(newClient);
+        return "redirect:/clients";
     }
 }

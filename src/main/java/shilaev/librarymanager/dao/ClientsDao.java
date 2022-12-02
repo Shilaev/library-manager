@@ -1,6 +1,7 @@
 package shilaev.librarymanager.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import shilaev.librarymanager.models.ClientRowMapper;
@@ -18,7 +19,25 @@ public class ClientsDao {
     }
 
     public List<Client> selectAllClients() {
-        String query = "select * from clients;";
-        return jdbcTemplate.query(query, new ClientRowMapper());
+        String selectAllFromClients = "select * from clients;";
+        return jdbcTemplate.query(selectAllFromClients, new ClientRowMapper());
+    }
+
+    public void addNewClient(Client newClient) {
+        String insertIntoClientsQuery = "insert into clients (" +
+                "last_name," +
+                "first_name," +
+                "patronymic_name," +
+                "birthday," +
+                "phone," +
+                "email) values (?, ?, ?, ?, ?, ?);";
+
+        jdbcTemplate.update(insertIntoClientsQuery,
+                newClient.getLastName(),
+                newClient.getFirstName(),
+                newClient.getPatronymicName(),
+                newClient.getBirthday(),
+                newClient.getPhone(),
+                newClient.getEmail());
     }
 }
