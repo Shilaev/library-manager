@@ -11,7 +11,8 @@ public class Client {
     private String phone;
     private String email;
 
-    public Client(String lastName, String firstName, String patronymicName, Date birthday, String phone, String email) {
+    public Client(int id, String lastName, String firstName, String patronymicName, Date birthday, String phone, String email) {
+        this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
         this.patronymicName = patronymicName;
@@ -23,20 +24,20 @@ public class Client {
     public Client() {
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getLastName() {
@@ -54,7 +55,7 @@ public class Client {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
+
     public String getPhone() {
         return phone;
     }

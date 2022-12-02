@@ -9,6 +9,7 @@ public class ClientRowMapper implements RowMapper<Client> {
     @Override
     public Client mapRow(ResultSet rs, int rowNum) throws SQLException {
         Client newClient = new Client();
+        newClient.setId(rs.getInt("id"));
         newClient.setLastName(rs.getString("last_name"));
         newClient.setFirstName(rs.getString("first_name"));
         newClient.setPatronymicName(rs.getString("patronymic_name"));
