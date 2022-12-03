@@ -1,7 +1,7 @@
-section{
+section {
     padding-top: 20px;
     padding-left: 20px;
-    width: 1000px;
+    width: fit-content;
 }
 
 table {
@@ -19,7 +19,25 @@ td {
     border: 1px solid grey;
 }
 
-a{
+a {
     text-decoration: none;
-    color: black;
+    color: #808080;
+}
+
+tr {
+    display: block;
+    float: left;
+}
+
+th, td {
+    display: block;
+    border: 1px solid #808080;
+}
+
+tr > *:not(:first-child) {
+    border-top: 0;
+}
+
+tr:not(:first-child) > * {
+    border-left: 0;
 }

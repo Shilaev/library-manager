@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:content-type="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title th:text="'client-' + ${currentClient.id}">client: id</title>
+    <link rel="stylesheet" href="/resources/clients/css/standard_table.css" type="text/css">
 </head>
 <body>
-$END$
+<section>
+    <a th:href="@{/clients/}">
+        <button>to all clients</button>
+    </a>
+    <br>
+
+    <table>
+
+        <tr>
+            <th>id</th>
+            <th>last name</th>
+            <th>first name</th>
+            <th>patronymic name</th>
+            <th>birthday</th>
+            <th>phone</th>
+            <th>email</th>
+        </tr>
+
+        <tr>
+            <td th:text="${currentClient.id}"></td>
+            <td th:text="${currentClient.lastName}"></td>
+            <td th:text="${currentClient.firstName}"></td>
+            <td th:text="${currentClient.patronymicName == null} ? 'null' : ${currentClient.patronymicName}"></td>
+            <td th:text="${currentClient.birthday}"></td>
+            <td th:text="${currentClient.phone}"></td>
+            <td th:text="${currentClient.email}"></td>
+        </tr>
+
+    </table>
+
+</section>
 </body>
 </html>
