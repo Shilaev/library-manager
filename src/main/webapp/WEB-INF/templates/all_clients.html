@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:content-type="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/resources/clients/css/selectable_table.css" rel="stylesheet" type="text/css">
+    <title>clients-list</title>
+</head>
+<body>
+
+<section>
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>last name</th>
+            <th>first name</th>
+            <th>patronymic name</th>
+            <th>birthday</th>
+            <th>phone</th>
+            <th>email</th>
+        </tr>
+
+        </thead>
+        <tbody th:each="client: ${clients_list}">
+        <tr>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.id}"></a>
+            </td>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.lastName}"></a>
+            </td>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.firstName}"></a>
+            </td>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}"
+                   th:text="${client.patronymicName == null} ? 'null' : ${client.patronymicName}"></a>
+            </td>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.birthday}"></a>
+            </td>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.phone}"></a>
+            </td>
+            <td>
+                <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.email}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+</body>
+</html>
