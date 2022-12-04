@@ -44,4 +44,18 @@ public class ClientsController {
         return "redirect:/clients";
     }
 
+    // UPDATE
+    @GetMapping("/edit-client-{id}")
+    public String getEditClientPage(@PathVariable("id") int id,
+            @ModelAttribute("client_for_edit") Client clientForEdit) {
+        return "/edit_client";
+    }
+
+    @PatchMapping("/edit-client-{id}")
+    public String editClient(@PathVariable("id") int id,
+                             @ModelAttribute("edited_client") Client editedClient) {
+        clientsDao.editClient(editedClient, id);
+        return "redirect:/clients";
+    }
+
 }
