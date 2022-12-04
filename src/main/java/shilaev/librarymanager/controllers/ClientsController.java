@@ -47,7 +47,8 @@ public class ClientsController {
     // UPDATE
     @GetMapping("/edit-client-{id}")
     public String getEditClientPage(@PathVariable("id") int id,
-            @ModelAttribute("client_for_edit") Client clientForEdit) {
+                                    Model model) {
+        model.addAttribute("client_for_edit", clientsDao.selectClientById(id));
         return "/edit_client";
     }
 
