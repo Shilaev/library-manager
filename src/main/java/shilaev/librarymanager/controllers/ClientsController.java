@@ -56,7 +56,7 @@ public class ClientsController {
     public String editClient(@PathVariable("id") int id,
                              @ModelAttribute("edited_client") Client editedClient) {
         clientsDao.editClient(editedClient, id);
-        return "redirect:/clients";
+        return "redirect:/clients/client/" + id;
     }
 
 }

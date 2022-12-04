@@ -11,6 +11,10 @@
     <a th:href="@{/clients/}">
         <button>to all clients</button>
     </a>
+
+    <a th:href="@{/clients/edit-client-{id}(id=${currentClient.id})}">
+        <button>edit client</button>
+    </a>
     <br>
 
     <table>
