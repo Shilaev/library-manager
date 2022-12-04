@@ -47,4 +47,24 @@ public class ClientsDao {
                 newClient.getPhone(),
                 newClient.getEmail());
     }
+
+    public void editClient(Client newClient, int id) {
+        String updateClient = "update clients\n" +
+                "set last_name = ?,\n" +
+                "    first_name = ?,\n" +
+                "    patronymic_name = ?,\n" +
+                "    birthday = ?,\n" +
+                "    phone = ?,\n" +
+                "    email = ?\n" +
+                "where id = ?;";
+
+        jdbcTemplate.update(updateClient,
+                newClient.getLastName(),
+                newClient.getFirstName(),
+                newClient.getPatronymicName(),
+                newClient.getBirthday(),
+                newClient.getPhone(),
+                newClient.getEmail(),
+                id);
+    }
 }
