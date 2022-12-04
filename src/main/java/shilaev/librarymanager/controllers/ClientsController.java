@@ -18,6 +18,18 @@ public class ClientsController {
         this.clientsDao = clientsDao;
     }
 
+    // CREATE
+    @GetMapping("/add-client")
+    public String getAddClientPage(@ModelAttribute("new_client") Client newClient) {
+        return "add_client";
+    }
+
+    @PostMapping("/add-client")
+    public String postNewClient(@ModelAttribute("new_client") Client newClient) {
+        clientsDao.addNewClient(newClient);
+        return "redirect:/clients";
+    }
+
     // READ
     @GetMapping()
     public String getBooksList(Model model) {
@@ -30,18 +42,6 @@ public class ClientsController {
                                 Model model) {
         model.addAttribute("currentClient", clientsDao.selectClientById(id));
         return "client_page";
-    }
-
-    // CREATE
-    @GetMapping("/add-client")
-    public String getAddClientPage(@ModelAttribute("new_client") Client newClient) {
-        return "add_client";
-    }
-
-    @PostMapping("/add-client")
-    public String postNewClient(@ModelAttribute("new_client") Client newClient) {
-        clientsDao.addNewClient(newClient);
-        return "redirect:/clients";
     }
 
     // UPDATE
@@ -57,6 +57,13 @@ public class ClientsController {
                              @ModelAttribute("edited_client") Client editedClient) {
         clientsDao.editClient(editedClient, id);
         return "redirect:/clients/client/" + id;
+    }
+
+    // DELETE
+    @DeleteMapping("/delete-client-{id}")
+    public String deleteClient(@PathVariable("id") int id) {
+        clientsDao.deleteClientById(id);
+        return "redirect:/clients";
     }
 
 }

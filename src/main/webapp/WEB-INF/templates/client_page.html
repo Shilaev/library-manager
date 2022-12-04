@@ -8,13 +8,21 @@
 </head>
 <body>
 <section>
+    <!-- TO ALL CLIENTS -->
     <a th:href="@{/clients/}">
         <button>to all clients</button>
     </a>
 
+    <!-- EDIT THIS CLIENT -->
     <a th:href="@{/clients/edit-client-{id}(id=${currentClient.id})}">
         <button>edit client</button>
     </a>
+
+    <!-- DELETE THIS CLIENT-->
+    <form method="#" th:method="delete" th:action="@{/clients/delete-client-{id}(id=${currentClient.id})}">
+        <input type="submit" value="delete client">
+    </form>
+
     <br>
 
     <table>
