@@ -8,29 +8,34 @@
 <body>
 <form th:method="post" th:action="@{/clients/add-client}" th:object="${new_client}">
 
-    <label for="first_name">first name</label>
-    <input id="first_name" type="text" th:field="*{firstName}"/>
-    <br>
-
     <label for="last_name">last name</label>
     <input id="last_name" type="text" th:field="*{lastName}"/>
     <div th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
     <br>
 
+    <label for="first_name">first name</label>
+    <input id="first_name" type="text" th:field="*{firstName}"/>
+    <div th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+    <br>
+
     <label for="patronymic_name">patronymic name</label>
     <input id="patronymic_name" type="text" th:field="*{patronymicName}"/>
+    <div th:if="${#fields.hasErrors('patronymicName')}" th:errors="*{patronymicName}"></div>
     <br>
 
     <label for="birthday">birthday</label>
     <input id="birthday" type="date" th:field="*{birthday}"/>
+    <div th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div>
     <br>
 
     <label for="phone">phone</label>
     <input id="phone" type="text" th:field="*{phone}"/>
+    <div th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
     <br>
 
     <label for="email">email</label>
     <input id="email" type="text" th:field="*{email}"/>
+    <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     <br>
 
     <input type="submit" value="Add client">

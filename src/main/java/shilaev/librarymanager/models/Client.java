@@ -1,14 +1,16 @@
 package shilaev.librarymanager.models;
 
+
+
 import org.hibernate.validator.constraints.Length;
 
-import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
 public class Client {
     private int id;
-
-    @Length(min = 5, max = 10, message = "between 5 and 10")
+    @Length(min = 1, max = 5, message = "1 - 5")
+    @NotNull
     private String lastName;
     private String firstName;
     private String patronymicName;

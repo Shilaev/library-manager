@@ -32,12 +32,14 @@ public class ClientsController {
     }
 
     @PostMapping("/add-client")
-    public String postNewClient(@ModelAttribute("new_client") @Valid Client newClient,
+    public String postNewClient(@ModelAttribute("new_client")
+                                @Valid Client newClient,
                                 BindingResult bindingResult) {
         clientsValidator.validate(newClient, bindingResult);
         if (bindingResult.hasErrors()) {
             return "add_client";
         }
+
         clientsDao.addNewClient(newClient);
         return "redirect:/clients";
     }
@@ -60,13 +62,20 @@ public class ClientsController {
     @GetMapping("/edit-client-{id}")
     public String getEditClientPage(@PathVariable("id") int id,
                                     Model model) {
-        model.addAttribute("client_for_edit", clientsDao.selectClientById(id));
-        return "/edit_client";
+        model.addAttribute("edited_client", clientsDao.selectClientById(id));
+        return "edit_client";
     }
 
     @PatchMapping("/edit-client-{id}")
     public String editClient(@PathVariable("id") int id,
-                             @ModelAttribute("edited_client") Client editedClient) {
+                             @ModelAttribute("edited_client")
+                             @Valid Client editedClient,
+                             BindingResult bindingResult) {
+        clientsValidator.validate(editedClient, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "edit_client";
+        }
+
         clientsDao.editClient(editedClient, id);
         return "redirect:/clients/client/" + id;
     }
