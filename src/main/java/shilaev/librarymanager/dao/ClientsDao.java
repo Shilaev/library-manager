@@ -8,6 +8,7 @@ import shilaev.librarymanager.models.ClientRowMapper;
 import shilaev.librarymanager.models.Client;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ClientsDao {
