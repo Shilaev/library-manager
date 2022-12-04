@@ -8,6 +8,7 @@ import shilaev.librarymanager.models.ClientRowMapper;
 import shilaev.librarymanager.models.Client;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class ClientsDao {
@@ -16,17 +17,6 @@ public class ClientsDao {
     @Autowired
     public ClientsDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
-    }
-
-    // READ
-    public List<Client> selectAllClients() {
-        String selectAllFromClients = "select * from clients;";
-        return jdbcTemplate.query(selectAllFromClients, new ClientRowMapper());
-    }
-
-    public Client selectClientById(int id) {
-        String selectClientById = "select * from clients where id = ?;";
-        return jdbcTemplate.queryForObject(selectClientById, new ClientRowMapper(), id);
     }
 
     // CREATE
@@ -48,6 +38,18 @@ public class ClientsDao {
                 newClient.getEmail());
     }
 
+    // READ
+    public List<Client> selectAllClients() {
+        String selectAllFromClients = "select * from clients;";
+        return jdbcTemplate.query(selectAllFromClients, new ClientRowMapper());
+    }
+
+    public Client selectClientById(int id) {
+        String selectClientById = "select * from clients where id = ?;";
+        return jdbcTemplate.queryForObject(selectClientById, new ClientRowMapper(), id);
+    }
+
+    // UPDATE
     public void editClient(Client newClient, int id) {
         String updateClient = "update clients\n" +
                 "set last_name = ?,\n" +
@@ -66,5 +68,11 @@ public class ClientsDao {
                 newClient.getPhone(),
                 newClient.getEmail(),
                 id);
+    }
+
+    // DELETE
+    public void deleteClientById(int id) {
+        String deleteFromClient = "delete from clients where id = ?;";
+        jdbcTemplate.update(deleteFromClient, id);
     }
 }

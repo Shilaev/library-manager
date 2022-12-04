@@ -32,24 +32,37 @@
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.id}"></a>
             </td>
+
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.lastName}"></a>
             </td>
+
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.firstName}"></a>
             </td>
+
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}"
                    th:text="${client.patronymicName == null} ? 'null' : ${client.patronymicName}"></a>
             </td>
+
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.birthday}"></a>
             </td>
+
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.phone}"></a>
             </td>
+
             <td>
                 <a th:href="@{/clients/client/{id}(id = ${client.id})}" th:text="${client.email}"></a>
+            </td>
+
+            <td>
+                <!-- DELETE THIS CLIENT-->
+                <form method="#" th:method="delete" th:action="@{/clients/delete-client-{id}(id=${client.id})}">
+                    <input type="submit" value="delete client">
+                </form>
             </td>
         </tr>
         </tbody>
