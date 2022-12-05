@@ -2,16 +2,15 @@ package shilaev.librarymanager.models;
 
 
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.sql.Date;
 
 public class Client {
     @NotNull(message = "can't be null")
+    @Range(min = 0, max = Integer.MAX_VALUE)
     private int id;
 
     @Length(min = 1, max = 90, message = "Length must be between 1 and 90")
@@ -29,6 +28,7 @@ public class Client {
     @NotEmpty(message = "can't be empty")
     private String patronymicName;
 
+    @NotNull
     private Date birthday;
 
     @NotNull(message = "can't be null")
