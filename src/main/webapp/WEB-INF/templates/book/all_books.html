@@ -4,10 +4,47 @@
 <head>
     <meta charset="UTF-8">
     <title>all-books</title>
+    <link href="/resources/css/selectable_table.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <section>
+    <table>
 
+        <thead>
+        <tr>
+            <th>isbn</th>
+            <th>title</th>
+            <th>author</th>
+            <th>year</th>
+            <th>in stock</th>
+        </tr>
+        </thead>
+
+        <tbody th:each="book : ${all_books_list}">
+        <tr>
+            <td>
+                <a th:text="${book.isbn}"></a>
+            </td>
+
+            <td>
+                <a th:text="${book.title}"></a>
+            </td>
+
+            <td>
+                <a th:text="${book.authorName == null} ? ${book.authorId} : ${book.authorName}"></a>
+            </td>
+
+            <td>
+                <a th:text="${book.yearOfWriting}"></a>
+            </td>
+
+            <td>
+                <a th:text="${book.unitsInStock}"></a>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
 </section>
 </body>
-</html> 
+</html>

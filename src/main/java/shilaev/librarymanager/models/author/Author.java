@@ -1,4 +1,4 @@
-package shilaev.librarymanager.models.book;
+package shilaev.librarymanager.models.author;
 
 
 import javax.validation.constraints.NotEmpty;

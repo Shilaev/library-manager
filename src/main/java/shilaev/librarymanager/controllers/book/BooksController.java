@@ -29,7 +29,11 @@ public class BooksController {
 
 
     // READ
-
+    @GetMapping()
+    public String getAllBooks(Model model) {
+        model.addAttribute("all_books_list", booksDao.getAllBooks());
+        return "book/all_books";
+    }
 
     // UPDATE
 
