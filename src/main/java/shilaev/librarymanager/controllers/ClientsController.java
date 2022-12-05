@@ -28,7 +28,7 @@ public class ClientsController {
     @GetMapping("/add-client")
     public String getAddClientPage(@ModelAttribute("new_client")
                                            Client newClient) {
-        return "add_client";
+        return "client/add_client";
     }
 
     @PostMapping("/add-client")
@@ -37,7 +37,7 @@ public class ClientsController {
                                 BindingResult bindingResult) {
         clientsValidator.validate(newClient, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "add_client";
+            return "client/add_client";
         }
 
         clientsDao.addNewClient(newClient);
@@ -48,14 +48,14 @@ public class ClientsController {
     @GetMapping()
     public String getBooksList(Model model) {
         model.addAttribute("clients_list", clientsDao.selectAllClients());
-        return "all_clients";
+        return "client/all_clients";
     }
 
     @GetMapping("/client/{id}")
     public String getClientPage(@PathVariable("id") int id,
                                 Model model) {
         model.addAttribute("currentClient", clientsDao.selectClientById(id));
-        return "client_page";
+        return "client/client_page";
     }
 
     // UPDATE
@@ -63,7 +63,7 @@ public class ClientsController {
     public String getEditClientPage(@PathVariable("id") int id,
                                     Model model) {
         model.addAttribute("edited_client", clientsDao.selectClientById(id));
-        return "edit_client";
+        return "client/edit_client";
     }
 
     @PatchMapping("/edit-client-{id}")
@@ -73,7 +73,7 @@ public class ClientsController {
                              BindingResult bindingResult) {
         clientsValidator.validate(editedClient, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "edit_client";
+            return "client/edit_client";
         }
 
         clientsDao.editClient(editedClient, id);
