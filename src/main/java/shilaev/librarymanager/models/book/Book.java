@@ -36,6 +36,10 @@ public class Book {
         this.unitsInStock = unitsInStock;
     }
 
+    public Book() {
+
+    }
+
     public int getIsbn() {
         return isbn;
     }
