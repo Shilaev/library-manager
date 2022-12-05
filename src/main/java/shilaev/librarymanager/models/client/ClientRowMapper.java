@@ -1,4 +1,4 @@
-package shilaev.librarymanager.models;
+package shilaev.librarymanager.models.client;
 
 import org.springframework.jdbc.core.RowMapper;
 

@@ -1,13 +1,13 @@
-package shilaev.librarymanager.controllers;
+package shilaev.librarymanager.controllers.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import shilaev.librarymanager.dao.ClientsDao;
-import shilaev.librarymanager.models.Client;
-import shilaev.librarymanager.util.ClientsValidator;
+import shilaev.librarymanager.dao.client.ClientsDao;
+import shilaev.librarymanager.models.client.Client;
+import shilaev.librarymanager.util.client.ClientsValidator;
 
 import javax.validation.Valid;
 

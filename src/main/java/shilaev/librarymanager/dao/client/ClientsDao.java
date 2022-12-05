@@ -1,14 +1,12 @@
-package shilaev.librarymanager.dao;
+package shilaev.librarymanager.dao.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import shilaev.librarymanager.models.ClientRowMapper;
-import shilaev.librarymanager.models.Client;
+import shilaev.librarymanager.models.client.ClientRowMapper;
+import shilaev.librarymanager.models.client.Client;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class ClientsDao {

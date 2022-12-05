@@ -1,4 +1,4 @@
-package shilaev.librarymanager.models;
+package shilaev.librarymanager.models.book;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;

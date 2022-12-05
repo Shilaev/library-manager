@@ -1,11 +1,11 @@
-package shilaev.librarymanager.util;
+package shilaev.librarymanager.util.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import shilaev.librarymanager.dao.ClientsDao;
-import shilaev.librarymanager.models.Client;
+import shilaev.librarymanager.dao.client.ClientsDao;
+import shilaev.librarymanager.models.client.Client;
 
 @Component
 public class ClientsValidator implements Validator {
