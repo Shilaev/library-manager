@@ -3,13 +3,9 @@ package shilaev.librarymanager.controllers.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import shilaev.librarymanager.dao.book.BooksDao;
-import shilaev.librarymanager.models.client.Client;
 import shilaev.librarymanager.util.book.BooksValidator;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/books")
@@ -31,7 +27,7 @@ public class BooksController {
     // READ
     @GetMapping()
     public String getAllBooks(Model model) {
-        model.addAttribute("all_books_list", booksDao.getAllBooks());
+        model.addAttribute("books_list", booksDao.getAllBooks());
         return "book/all_books";
     }
 
