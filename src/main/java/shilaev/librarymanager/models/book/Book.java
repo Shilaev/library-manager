@@ -4,34 +4,32 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.time.Year;
+import java.util.Date;
 
 public class Book {
-    @NotNull(message = "can't be null")
-    @Pattern(regexp = "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$")
+    @NotEmpty(message = "can't be empty")
+//    @Pattern(regexp = "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
+//            message = "must be in ISBN format")
     private String isbn;
 
-    @NotNull(message = "can't be null")
     @NotEmpty(message = "can't be empty")
     private String title;
-
-    @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
+    //    @NotNull(message = "can't be null")
     private int authorId;
-
-    @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
+    //    @NotEmpty(message = "can't be empty")
     private String authorName;
 
     @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
     private int yearOfWriting;
 
     @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
-    @Range(min = 0, max = Integer.MAX_VALUE)
+    @Range(min = 0, max = Integer.MAX_VALUE,
+            message = "must be greater then 0")
     private int unitsInStock;
 
     public Book(String isbn, String title, String authorName, int yearOfWriting, int unitsInStock) {

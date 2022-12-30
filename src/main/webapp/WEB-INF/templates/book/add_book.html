@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:content-type="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>add-book</title>
 </head>
 <body>
-$END$
+<form th:method="post" th:action="@{/books/add-book}" th:object="${new_book}">
+
+    <label for="isbn">isbn</label>
+    <input id="isbn" type="text" th:field="*{isbn}"/>
+    <div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></div>
+    <br>
+
+    <label for="title">title</label>
+    <input id="title" type="text" th:field="*{title}"/>
+    <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    <br>
+
+    // TODO!!!! Make list with selection of Author
+    <label for="authorId">authorId</label>
+    <input id="authorId" type="number" th:field="*{authorId}"/>
+    <div th:if="${#fields.hasErrors('authorId')}" th:errors="*{authorId}"></div>
+    <br>
+
+    <label for="yearOfWriting">yearOfWriting</label>
+    <input id="yearOfWriting" type="number" th:field="*{yearOfWriting}"/>
+    <div th:if="${#fields.hasErrors('yearOfWriting')}" th:errors="*{yearOfWriting}"></div>
+    <br>
+
+    <label for="unitsInStock">unitsInStock</label>
+    <input id="unitsInStock" type="number" th:field="*{unitsInStock}"/>
+    <div th:if="${#fields.hasErrors('unitsInStock')}" th:errors="*{unitsInStock}"></div>
+    <br>
+
+    <input type="submit" value="Add book">
+</form>
 </body>
 </html>
