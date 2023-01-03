@@ -1,15 +1,10 @@
 package shilaev.librarymanager.models.book;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
-import org.springframework.stereotype.Component;
 
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import java.time.Year;
-import java.util.Date;
+
 
 public class Book {
     @NotEmpty(message = "can't be empty")
@@ -19,9 +14,11 @@ public class Book {
 
     @NotEmpty(message = "can't be empty")
     private String title;
-    //    @NotNull(message = "can't be null")
+
+    @NotNull(message = "can't be null")
     private int authorId;
-    //    @NotEmpty(message = "can't be empty")
+
+    @NotEmpty(message = "can't be empty")
     private String authorName;
 
     @NotNull(message = "can't be null")
@@ -40,6 +37,7 @@ public class Book {
         this.unitsInStock = unitsInStock;
     }
 
+    // CONSTRUCTORS
     public Book(String isbn, String title, int authorId, int yearOfWriting, int unitsInStock) {
         this.isbn = isbn;
         this.title = title;
@@ -52,6 +50,7 @@ public class Book {
 
     }
 
+    // GETTERS, SETTERS
     public String getIsbn() {
         return isbn;
     }
@@ -75,7 +74,6 @@ public class Book {
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
-
 
     public int getAuthorId() {
         return authorId;

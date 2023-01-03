@@ -24,7 +24,6 @@ public class BooksController {
         this.booksDao = booksDao;
     }
 
-
     // CREATE
     @GetMapping("/add-book")
     public String addBookPage(@ModelAttribute("new_book") Book newBook) {

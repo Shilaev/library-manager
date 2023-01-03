@@ -8,6 +8,8 @@ import shilaev.librarymanager.models.client.Client;
 
 import java.util.List;
 
+// TODO: 03.01.2023 create VIEW on update table. Select VIEW - select all clients
+
 @Component
 public class ClientsDao {
     private final JdbcTemplate jdbcTemplate;
@@ -19,15 +21,18 @@ public class ClientsDao {
 
     // CREATE
     public void addNewClient(Client newClient) {
-        String insertIntoClientsQuery = "insert into clients (" +
-                "last_name," +
-                "first_name," +
-                "patronymic_name," +
-                "birthday," +
-                "phone," +
-                "email) values (?, ?, ?, ?, ?, ?);";
+        String insertIntoClientsView = "insert into clients_all_info (last_name, first_name, patronymic_name, birthday, phone, email)\n" +
+                "VALUES (?, ?, ?, ?, ?, ?);";
 
-        jdbcTemplate.update(insertIntoClientsQuery,
+//        String insertIntoClientsQuery = "insert into clients (" +
+//                "last_name," +
+//                "first_name," +
+//                "patronymic_name," +
+//                "birthday," +
+//                "phone," +
+//                "email) values (?, ?, ?, ?, ?, ?);";
+
+        jdbcTemplate.update(insertIntoClientsView,
                 newClient.getLastName(),
                 newClient.getFirstName(),
                 newClient.getPatronymicName(),
