@@ -21,18 +21,15 @@ public class ClientsDao {
 
     // CREATE
     public void addNewClient(Client newClient) {
-        String insertIntoClientsView = "insert into clients_all_info (last_name, first_name, patronymic_name, birthday, phone, email)\n" +
-                "VALUES (?, ?, ?, ?, ?, ?);";
+        String insertIntoClientsQuery = "insert into clients (" +
+                "last_name," +
+                "first_name," +
+                "patronymic_name," +
+                "birthday," +
+                "phone," +
+                "email) values (?, ?, ?, ?, ?, ?);";
 
-//        String insertIntoClientsQuery = "insert into clients (" +
-//                "last_name," +
-//                "first_name," +
-//                "patronymic_name," +
-//                "birthday," +
-//                "phone," +
-//                "email) values (?, ?, ?, ?, ?, ?);";
-
-        jdbcTemplate.update(insertIntoClientsView,
+        jdbcTemplate.update(insertIntoClientsQuery,
                 newClient.getLastName(),
                 newClient.getFirstName(),
                 newClient.getPatronymicName(),
