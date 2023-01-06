@@ -10,9 +10,9 @@
 
 <section>
 
-<!--    <a th:href="@{/clients/add-client}">-->
-<!--        <button>add client</button>-->
-<!--    </a>-->
+    <!--    <a th:href="@{/clients/add-client}">-->
+    <!--        <button>add client</button>-->
+    <!--    </a>-->
 
     <table>
         <thead>
@@ -31,7 +31,7 @@
                 <b th:text="${rent.id}"></b>
             </td>
             <td>
-                <b th:text="${rent.clientId}"></b>
+                <a th:href="@{/clients/client/{id}(id = ${rent.clientId})}" th:text="${rent.clientId}"></a>
             </td>
             <td>
                 <b th:text="${rent.bookIsbn}"></b>
@@ -43,12 +43,12 @@
                 <b th:text="${rent.end}"></b>
             </td>
 
-<!--            <td>-->
-<!--                &lt;!&ndash; DELETE THIS CLIENT&ndash;&gt;-->
-<!--                <form method="#" th:method="delete" th:action="@{/clients/delete-client-{id}(id=${client.id})}">-->
-<!--                    <input type="submit" value="delete client">-->
-<!--                </form>-->
-<!--            </td>-->
+            <!--            <td>-->
+            <!--                &lt;!&ndash; DELETE THIS CLIENT&ndash;&gt;-->
+            <!--                <form method="#" th:method="delete" th:action="@{/clients/delete-client-{id}(id=${client.id})}">-->
+            <!--                    <input type="submit" value="delete client">-->
+            <!--                </form>-->
+            <!--            </td>-->
         </tr>
         </tbody>
     </table>
