@@ -1,2 +1,25 @@
-package shilaev.librarymanager.dao.author;public class AuthorDao {
+package shilaev.librarymanager.dao.author;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+import shilaev.librarymanager.models.author.Author;
+import shilaev.librarymanager.models.author.AuthorRowMapper;
+
+import java.util.List;
+
+@Component
+public class AuthorDao {
+
+    private final JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    public AuthorDao(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public List<Author> getAllAuthorLastNames() {
+        String selectAllAuthorLastNames = "select * from authors_last_names;";
+        return jdbcTemplate.query(selectAllAuthorLastNames, new AuthorRowMapper());
+    }
 }

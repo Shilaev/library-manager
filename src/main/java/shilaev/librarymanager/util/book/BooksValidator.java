@@ -14,6 +14,6 @@ public class BooksValidator implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-
+        Book book = (Book) target;
     }
 }

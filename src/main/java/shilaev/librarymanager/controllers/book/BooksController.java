@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import shilaev.librarymanager.dao.author.AuthorDao;
 import shilaev.librarymanager.dao.book.BooksDao;
+import shilaev.librarymanager.models.author.Author;
 import shilaev.librarymanager.models.book.Book;
 import shilaev.librarymanager.util.book.BooksValidator;
 
@@ -17,25 +19,34 @@ public class BooksController {
 
     private final BooksValidator booksValidator;
     private final BooksDao booksDao;
+    private final AuthorDao authorDao;
 
     @Autowired
-    public BooksController(BooksValidator booksValidator, BooksDao booksDao) {
+    public BooksController(BooksValidator booksValidator, BooksDao booksDao, AuthorDao authorDao) {
         this.booksValidator = booksValidator;
         this.booksDao = booksDao;
+        this.authorDao = authorDao;
     }
 
     // CREATE
     @GetMapping("/add-book")
-    public String addBookPage(@ModelAttribute("new_book") Book newBook) {
+    public String addBookPage(@ModelAttribute("new_book") Book newBook,
+                              @ModelAttribute("author") Author author,
+                              Model model) {
+        model.addAttribute("authors", authorDao.getAllAuthorLastNames());
         return "book/add_book";
     }
 
     @PostMapping("/add-book")
-    public String addBook(@ModelAttribute("new_book")
-                          @Valid Book newBook,
-                          BindingResult bindingResult) {
-        booksValidator.validate(newBook, bindingResult);
-        if (bindingResult.hasErrors()) {
+    public String addBook(@ModelAttribute("new_book") @Valid Book newBook, BindingResult newBookErrors,
+                          @ModelAttribute("author") @Valid Author author, BindingResult authorErrors) {
+        // SET VALUES
+        newBook.setAuthorId(author.getId());
+        newBook.setAuthorLastName(author.getLastName());
+
+        // VALIDATE
+        booksValidator.validate(newBook, newBookErrors);
+        if (newBookErrors.hasErrors() || authorErrors.hasErrors()) {
             return "book/add_book";
         }
 

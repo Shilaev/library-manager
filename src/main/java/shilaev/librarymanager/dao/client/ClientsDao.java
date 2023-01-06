@@ -8,8 +8,6 @@ import shilaev.librarymanager.models.client.Client;
 
 import java.util.List;
 
-// TODO: 03.01.2023 create VIEW on update table. Select VIEW - select all clients
-
 @Component
 public class ClientsDao {
     private final JdbcTemplate jdbcTemplate;

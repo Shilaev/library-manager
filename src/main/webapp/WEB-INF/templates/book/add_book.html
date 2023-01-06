@@ -18,9 +18,10 @@
     <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
     <br>
 
-    // TODO!!!! Make list with selection of Author
     <label for="authorId">authorId</label>
-    <input id="authorId" type="number" th:field="*{authorId}"/>
+    <select id="authorId" th:object="${author}" th:field="*{id}">
+        <option th:each="a : ${authors}" th:value="${a.getId()}" th:text="${a.getLastName()}"></option>
+    </select>
     <div th:if="${#fields.hasErrors('authorId')}" th:errors="*{authorId}"></div>
     <br>
 

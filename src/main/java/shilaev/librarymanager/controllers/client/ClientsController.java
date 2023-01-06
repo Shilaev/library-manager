@@ -26,8 +26,7 @@ public class ClientsController {
 
     // CREATE
     @GetMapping("/add-client")
-    public String getAddClientPage(@ModelAttribute("new_client")
-                                           Client newClient) {
+    public String getAddClientPage(@ModelAttribute("new_client") Client newClient) {
         return "client/add_client";
     }
 

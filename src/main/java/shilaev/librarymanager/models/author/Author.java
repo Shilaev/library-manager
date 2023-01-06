@@ -7,25 +7,21 @@ import java.sql.Date;
 
 public class Author {
     @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
     private int id;
 
-    @NotNull(message = "can't be null")
     @NotEmpty(message = "can't be empty")
     private String lastName;
 
-    @NotNull(message = "can't be null")
     @NotEmpty(message = "can't be empty")
     private String firstName;
 
+    @NotEmpty(message = "can't be empty")
     private String patronymicName;
 
     @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
     private Date birthday;
 
     @NotNull(message = "can't be null")
-    @NotEmpty(message = "can't be empty")
     private Date deathDay;
 
     public Author(String lastName, String firstName, String patronymicName, Date birthday, Date deathDay) {
