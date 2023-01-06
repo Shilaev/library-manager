@@ -39,14 +39,15 @@ public class BooksController {
 
     @PostMapping("/add-book")
     public String addBook(@ModelAttribute("new_book") @Valid Book newBook, BindingResult newBookErrors,
-                          @ModelAttribute("author") @Valid Author author, BindingResult authorErrors) {
+                          @ModelAttribute("author") @Valid Author author, BindingResult authorErrors,
+                          Model model) {
         // SET VALUES
         newBook.setAuthorId(author.getId());
         newBook.setAuthorLastName(author.getLastName());
 
         // VALIDATE
-        booksValidator.validate(newBook, newBookErrors);
         if (newBookErrors.hasErrors() || authorErrors.hasErrors()) {
+            model.addAttribute("authors", authorDao.getAllAuthorLastNames());
             return "book/add_book";
         }
 
