@@ -4,16 +4,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import shilaev.librarymanager.dao.client.ClientsDao;
+import shilaev.librarymanager.dao.client.ClientDao;
 import shilaev.librarymanager.models.client.Client;
 
 @Component
 public class ClientsValidator implements Validator {
-    private final ClientsDao clientsDao;
+    private final ClientDao clientDao;
 
     @Autowired
-    public ClientsValidator(ClientsDao clientsDao) {
-        this.clientsDao = clientsDao;
+    public ClientsValidator(ClientDao clientDao) {
+        this.clientDao = clientDao;
     }
 
     @Override

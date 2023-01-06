@@ -39,14 +39,14 @@ public class BooksController {
 
     @PostMapping("/add-book")
     public String addBook(@ModelAttribute("new_book") @Valid Book newBook, BindingResult newBookErrors,
-                          @ModelAttribute("author") @Valid Author author, BindingResult authorErrors,
+                          @ModelAttribute("author") Author author,
                           Model model) {
         // SET VALUES
         newBook.setAuthorId(author.getId());
         newBook.setAuthorLastName(author.getLastName());
 
         // VALIDATE
-        if (newBookErrors.hasErrors() || authorErrors.hasErrors()) {
+        if (newBookErrors.hasErrors()) {
             model.addAttribute("authors", authorDao.getAllAuthorLastNames());
             return "book/add_book";
         }
@@ -58,7 +58,7 @@ public class BooksController {
     // READ
     @GetMapping()
     public String getAllBooks(Model model) {
-        model.addAttribute("books_list", booksDao.getAllBooks());
+        model.addAttribute("books_list", booksDao.selectAllBooks());
         return "book/all_books";
     }
 

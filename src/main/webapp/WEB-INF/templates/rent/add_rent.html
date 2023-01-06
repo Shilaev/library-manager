@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:content-type="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+
+<form th:method="post" th:action="@{/rents/add-rent}" th:object="${new_rent}">
+
+    <label for="clientId">client name</label>
+    <select id="clientId" th:object="${client}" th:field="*{id}">
+        <option th:each="client : ${client_list}"
+                th:value="${client.id}" th:text="${client.lastName}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('clientId')}" th:errors="*{clientId}"></div>
+    <br>
+
+    <label for="bookIsbn">book name</label>
+    <select id="bookIsbn" th:object="${book}" th:field="*{isbn}">
+        <option th:each="book : ${book_list}"
+                th:value="${book.isbn}" th:text="${book.title}"></option>
+    </select>
+    <div th:if="${#fields.hasErrors('bookIsbn')}" th:errors="*{bookIsbn}"></div>
+    <br>
+
+    <label for="startDate"></label>
+    <input id="startDate" type="date" th:field="*{start}">
+    <div th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></div>
+    <br>
+
+    <label for="endDate"></label>
+    <input id="endDate" type="date" th:field="*{end}">
+    <div th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></div>
+    <br>
+
+    <input type="submit" value="add rent">
+</form>
+
 </body>
 </html>

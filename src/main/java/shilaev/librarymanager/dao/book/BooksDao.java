@@ -18,7 +18,7 @@ public class BooksDao {
     }
 
     // READ
-    public List<Book> getAllBooks() {
+    public List<Book> selectAllBooks() {
         String selectAllFromBooksLeftJoinAuthor = "select books.isbn, books.title, books.author_id, author.last_name, books.year_of_writing, books.units_in_stock\n" +
                 "from books\n" +
                 "left join authors author on books.author_id = author.id";

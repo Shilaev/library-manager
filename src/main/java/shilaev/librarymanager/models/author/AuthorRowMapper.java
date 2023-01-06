@@ -13,10 +13,10 @@ public class AuthorRowMapper implements RowMapper<Author> {
         Author author = new Author();
         author.setId(rs.getInt("id"));
         author.setLastName(rs.getString("last_name"));
-//        authors.setFirstName(rs.getString("first_name"));
-//        authors.setPatronymicName(rs.getString("patronymic_name"));
-//        authors.setBirthday(rs.getDate("birthday"));
-//        authors.setDeathDay(rs.getDate("death_date"));
+        author.setFirstName(rs.getString("first_name"));
+        author.setPatronymicName(rs.getString("patronymic_name"));
+        author.setBirthday(rs.getDate("birthday"));
+        author.setDeathDay(rs.getDate("death_date"));
         return author;
     }
 }

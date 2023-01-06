@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:content-type="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link href="/resources/css/selectable_table.css" rel="stylesheet" type="text/css">
+    <title>all-rents</title>
 </head>
 <body>
-$END$
+
+<section>
+
+<!--    <a th:href="@{/clients/add-client}">-->
+<!--        <button>add client</button>-->
+<!--    </a>-->
+
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>client id</th>
+            <th>book isbn</th>
+            <th>start date</th>
+            <th>end date</th>
+        </tr>
+
+        </thead>
+        <tbody th:each="rent: ${rent_list}">
+        <tr>
+            <td>
+                <b th:text="${rent.id}"></b>
+            </td>
+            <td>
+                <b th:text="${rent.clientId}"></b>
+            </td>
+            <td>
+                <b th:text="${rent.bookIsbn}"></b>
+            </td>
+            <td>
+                <b th:text="${rent.start}"></b>
+            </td>
+            <td>
+                <b th:text="${rent.end}"></b>
+            </td>
+
+<!--            <td>-->
+<!--                &lt;!&ndash; DELETE THIS CLIENT&ndash;&gt;-->
+<!--                <form method="#" th:method="delete" th:action="@{/clients/delete-client-{id}(id=${client.id})}">-->
+<!--                    <input type="submit" value="delete client">-->
+<!--                </form>-->
+<!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+</section>
+
 </body>
 </html>

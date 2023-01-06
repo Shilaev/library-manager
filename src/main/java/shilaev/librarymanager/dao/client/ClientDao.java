@@ -9,11 +9,11 @@ import shilaev.librarymanager.models.client.Client;
 import java.util.List;
 
 @Component
-public class ClientsDao {
+public class ClientDao {
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public ClientsDao(JdbcTemplate jdbcTemplate) {
+    public ClientDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

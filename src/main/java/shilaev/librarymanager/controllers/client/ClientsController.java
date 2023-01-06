@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import shilaev.librarymanager.dao.client.ClientsDao;
+import shilaev.librarymanager.dao.client.ClientDao;
 import shilaev.librarymanager.models.client.Client;
 import shilaev.librarymanager.util.client.ClientsValidator;
 
@@ -16,12 +16,12 @@ import javax.validation.Valid;
 @RequestMapping("/clients")
 public class ClientsController {
     private final ClientsValidator clientsValidator;
-    private final ClientsDao clientsDao;
+    private final ClientDao clientDao;
 
     @Autowired
-    public ClientsController(ClientsValidator clientsValidator, ClientsDao clientsDao) {
+    public ClientsController(ClientsValidator clientsValidator, ClientDao clientDao) {
         this.clientsValidator = clientsValidator;
-        this.clientsDao = clientsDao;
+        this.clientDao = clientDao;
     }
 
     // CREATE
@@ -39,21 +39,21 @@ public class ClientsController {
             return "client/add_client";
         }
 
-        clientsDao.addNewClient(newClient);
+        clientDao.addNewClient(newClient);
         return "redirect:/clients";
     }
 
     // READ
     @GetMapping()
     public String getBooksList(Model model) {
-        model.addAttribute("clients_list", clientsDao.selectAllClients());
+        model.addAttribute("clients_list", clientDao.selectAllClients());
         return "client/all_clients";
     }
 
     @GetMapping("/client/{id}")
     public String getClientPage(@PathVariable("id") int id,
                                 Model model) {
-        model.addAttribute("currentClient", clientsDao.selectClientById(id));
+        model.addAttribute("currentClient", clientDao.selectClientById(id));
         return "client/client_page";
     }
 
@@ -61,7 +61,7 @@ public class ClientsController {
     @GetMapping("/edit-client-{id}")
     public String getEditClientPage(@PathVariable("id") int id,
                                     Model model) {
-        model.addAttribute("edited_client", clientsDao.selectClientById(id));
+        model.addAttribute("edited_client", clientDao.selectClientById(id));
         return "client/edit_client";
     }
 
@@ -75,14 +75,14 @@ public class ClientsController {
             return "client/edit_client";
         }
 
-        clientsDao.editClient(editedClient, id);
+        clientDao.editClient(editedClient, id);
         return "redirect:/clients/client/" + id;
     }
 
     // DELETE
     @DeleteMapping("/delete-client-{id}")
     public String deleteClient(@PathVariable("id") int id) {
-        clientsDao.deleteClientById(id);
+        clientDao.deleteClientById(id);
         return "redirect:/clients";
     }
 
