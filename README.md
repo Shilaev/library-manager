@@ -51,6 +51,8 @@
 сначала средствами Базы данных **Check** и другие ограничения,
 затем с помощью **Hybernate Validator** и **Validator** из библиотеки **Springframework**
 
+<img src="./readme_files/hybernate_validator.png" alt="alt text" width="500"/>
+
 <img src="./readme_files/Validator.png" alt="alt text" width="600"/>
 
 <img src="./readme_files/add_client.png" alt="alt text" width="400"/>
