@@ -28,12 +28,13 @@ public class BooksDao {
 
     // CREATE
     public void addNewBook(Book newBook) {
-        String insertRequest = "insert into books (isbn, title, author_id, year_of_writing, units_in_stock)\n" +
-                "values (?,?,?,?,?);";
+        String insertRequest = "insert into books (isbn, title, author_id, last_name, year_of_writing, units_in_stock)\n" +
+                "values (?,?,?,?,?,?);";
         jdbcTemplate.update(insertRequest,
                 newBook.getIsbn(),
                 newBook.getTitle(),
                 newBook.getAuthorId(),
+                newBook.getAuthorLastName(),
                 newBook.getYearOfWriting(),
                 newBook.getUnitsInStock());
     }

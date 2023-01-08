@@ -21,7 +21,7 @@
 
     <label for="authorId">authorId</label>
     <select id="authorId" th:object="${author}" th:field="*{id}">
-        <option th:each="a : ${authors}" th:value="${a.getId()}" th:text="${a.getLastName()}"></option>
+        <option th:each="a : ${authors}" th:value="${a.getId()}" th:text="${a.lastName}"></option>
     </select>
     <div th:if="${#fields.hasErrors('authorId')}" th:errors="*{authorId}"></div>
     <br>

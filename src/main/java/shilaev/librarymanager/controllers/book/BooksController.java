@@ -43,7 +43,7 @@ public class BooksController {
                           Model model) {
         // SET VALUES
         newBook.setAuthorId(author.getId());
-        newBook.setAuthorLastName(author.getLastName());
+        newBook.setAuthorLastName(authorDao.getAuthorById(author.getId()).getLastName());
 
         // VALIDATE
         if (newBookErrors.hasErrors()) {
