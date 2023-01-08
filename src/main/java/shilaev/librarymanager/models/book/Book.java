@@ -8,28 +8,28 @@ import javax.validation.constraints.Pattern;
 
 
 public class Book {
-//    @NotEmpty(message = "can't be empty")
-//    @Pattern(regexp = "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
-//            message = "must be in ISBN format")
+    @NotEmpty(message = "can't be empty")
+    @Pattern(regexp = "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
+            message = "must be in ISBN format")
     private String isbn;
 
-//    @NotEmpty(message = "can't be empty")
+    @NotEmpty(message = "can't be empty")
     private String title;
 
-//    @NotNull(message = "can't be null")
+    @NotNull(message = "can't be null")
     private int authorId;
 
-//    @NotEmpty(message = "can't be empty")
+    @NotEmpty(message = "can't be empty")
     private String authorLastName;
 
-//    @NotNull(message = "can't be null")
-//    @Range(min = 0, max = Integer.MAX_VALUE,
-//            message = "must be greater then 0")
+    @NotNull(message = "can't be null")
+    @Range(min = 0, max = Integer.MAX_VALUE,
+            message = "must be greater then 0")
     private int yearOfWriting;
-//
-//    @NotNull(message = "can't be null")
-//    @Range(min = 0, max = Integer.MAX_VALUE,
-//            message = "must be greater then 0")
+
+    @NotNull(message = "can't be null")
+    @Range(min = 0, max = Integer.MAX_VALUE,
+            message = "must be greater then 0")
     private int unitsInStock;
 
     // CONSTRUCTORS
