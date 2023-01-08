@@ -4,10 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import shilaev.librarymanager.dao.book.BooksDao;
 import shilaev.librarymanager.dao.client.ClientDao;
 import shilaev.librarymanager.dao.rent.RentDao;
@@ -54,7 +51,7 @@ public class RentController {
         newRent.setBookIsbn(book.getIsbn());
 
         // VALIDATE
-        if (newRentBindingResult.hasErrors()){
+        if (newRentBindingResult.hasErrors()) {
             model.addAttribute("client_list", clientDao.selectAllClients());
             model.addAttribute("book_list", booksDao.selectAllBooks());
             return "rent/add_rent";
@@ -77,4 +74,9 @@ public class RentController {
 
     // UPDATE
     // DELETE
+    @DeleteMapping("delete-rent-{id}")
+    public String deleteRent(@PathVariable("id") int id) {
+        rentDao.deleteThisRent(id);
+        return "redirect:/rents";
+    }
 }

@@ -10,9 +10,9 @@
 
 <section>
 
-    <!--    <a th:href="@{/clients/add-client}">-->
-    <!--        <button>add client</button>-->
-    <!--    </a>-->
+    <a th:href="@{/rents/add-rent/}">
+        <button>add rent</button>
+    </a>
 
     <table>
         <thead>
@@ -42,13 +42,12 @@
             <td>
                 <b th:text="${rent.end}"></b>
             </td>
-
-            <!--            <td>-->
-            <!--                &lt;!&ndash; DELETE THIS CLIENT&ndash;&gt;-->
-            <!--                <form method="#" th:method="delete" th:action="@{/clients/delete-client-{id}(id=${client.id})}">-->
-            <!--                    <input type="submit" value="delete client">-->
-            <!--                </form>-->
-            <!--            </td>-->
+            <td>
+                <!-- DELETE THIS CLIENT-->
+                <form th:method="delete" th:action="@{/rents/delete-rent-{id}(id=${rent.id})}">
+                    <input type="submit" value="delete rent">
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -36,4 +36,9 @@ public class RentDao {
                 newRent.getStart(),
                 newRent.getEnd());
     }
+
+    public void deleteThisRent(int id) {
+        String deleteRentById = "delete from rents where id = ?";
+        jdbcTemplate.update(deleteRentById, id);
+    }
 }
