@@ -9,7 +9,6 @@ import shilaev.librarymanager.dao.author.AuthorDao;
 import shilaev.librarymanager.dao.book.BooksDao;
 import shilaev.librarymanager.models.author.Author;
 import shilaev.librarymanager.models.book.Book;
-import shilaev.librarymanager.util.book.BooksValidator;
 
 import javax.validation.Valid;
 
@@ -17,13 +16,11 @@ import javax.validation.Valid;
 @RequestMapping("/books")
 public class BooksController {
 
-    private final BooksValidator booksValidator;
     private final BooksDao booksDao;
     private final AuthorDao authorDao;
 
     @Autowired
-    public BooksController(BooksValidator booksValidator, BooksDao booksDao, AuthorDao authorDao) {
-        this.booksValidator = booksValidator;
+    public BooksController(BooksDao booksDao, AuthorDao authorDao) {
         this.booksDao = booksDao;
         this.authorDao = authorDao;
     }
