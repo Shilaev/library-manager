@@ -38,4 +38,10 @@ public class BooksDao {
                 newBook.getYearOfWriting(),
                 newBook.getUnitsInStock());
     }
+
+    public void deleteBookByIsbn(String isbn) {
+        String deleteFromBooksByIsbn = "delete from books\n" +
+                "where isbn like (?)";
+        jdbcTemplate.update(deleteFromBooksByIsbn, isbn);
+    }
 }

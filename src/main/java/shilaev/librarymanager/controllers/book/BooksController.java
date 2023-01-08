@@ -66,5 +66,10 @@ public class BooksController {
 
 
     // DELETE
+    @DeleteMapping("delete-book-{isbn}")
+    public String deleteBook(@PathVariable("isbn") String isbn){
+        booksDao.deleteBookByIsbn(isbn);
+        return "redirect:/books";
+    }
 
 }

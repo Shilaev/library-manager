@@ -46,6 +46,12 @@
             <td>
                 <a th:text="${book.unitsInStock}"></a>
             </td>
+
+            <td>
+                <form th:method="delete" th:action="@{/books/delete-book-{isbn}(isbn = ${book.isbn})}">
+                    <input type="submit" value="delete book">
+                </form>
+            </td>
         </tr>
         </tbody>
 
