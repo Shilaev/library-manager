@@ -1,12 +1,13 @@
 # Библиотечное WEB CRUD приложение
 
 # Используемые технологии
-Maven
-Spring MVC
-Thymeleaf
-Tomcat
-PostgreSQL
-Hybernate
+* **Java**
+* **PostgreSQL**
+* **Spring MVC**
+* **Hybernate**
+* **Thymeleaf**
+* **Tomcat**
+* **Maven**
 
 # Структура базы данных
 В базе данных предусмотрены все возможные проверки значений **Check**,
