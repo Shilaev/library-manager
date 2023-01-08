@@ -24,6 +24,16 @@
 В приложении есть все атрибуты **CRUD**
 Можно просматривать, создавать, редактировать и удалять сущности.
 
+Для структуры выбрат паттерн **Model View Controller**
+А так же исопльзуется прослойка **Data Access Object** между контроллером и Базой данных
+
+<img src="./readme_files/clientDao.png" alt="alt text" width="600"/>
+
+Вунтри **DAO** используется **jdbcTemplate** для исполнения запросов.
+Специально для него написан **RowMapper**
+
+<img src="./readme_files/RowMapper.png" alt="alt text" width="600"/>
+
 **Скриншоты страниц:**
 
 **Клиенты библиотеки**
@@ -39,7 +49,9 @@
 
 Страница с добавлением нового клиента. Все поля дважды проверяются,
 сначала средствами Базы данных **Check** и другие ограничения,
-затем с помощью Hybernate Validator
+затем с помощью **Hybernate Validator** и **Validator** из библиотеки **Springframework**
+
+<img src="./readme_files/Validator.png" alt="alt text" width="600"/>
 
 <img src="./readme_files/add_client.png" alt="alt text" width="400"/>
 
