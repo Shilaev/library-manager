@@ -8,6 +8,7 @@
 * **Thymeleaf**
 * **Tomcat**
 * **Maven**
+* **Lombok**
 
 # Структура базы данных
 В базе данных предусмотрены все возможные проверки значений **Check**,
@@ -33,6 +34,10 @@
 Специально для него написан **RowMapper**
 
 <img src="./readme_files/RowMapper.png" alt="alt text" width="600"/>
+
+Так же для минимизации кода, подключены аннотации Lombook
+
+<img src="./readme_files/lombook_example.png" alt="alt text" width="500"/>
 
 **Скриншоты страниц:**
 
