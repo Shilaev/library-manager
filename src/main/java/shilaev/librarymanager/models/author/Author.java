@@ -1,10 +1,16 @@
 package shilaev.librarymanager.models.author;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
+@Setter
+@Getter
+@NoArgsConstructor
 public class Author {
     @NotNull(message = "can't be null")
     private int id;
@@ -29,57 +35,6 @@ public class Author {
         this.firstName = firstName;
         this.patronymicName = patronymicName;
         this.birthday = birthday;
-        this.deathDay = deathDay;
-    }
-
-    public Author() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getPatronymicName() {
-        return patronymicName;
-    }
-
-    public void setPatronymicName(String patronymicName) {
-        this.patronymicName = patronymicName;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Date getDeathDay() {
-        return deathDay;
-    }
-
-    public void setDeathDay(Date deathDay) {
         this.deathDay = deathDay;
     }
 }

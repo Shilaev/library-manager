@@ -1,12 +1,18 @@
 package shilaev.librarymanager.models.book;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class Book {
     @NotEmpty(message = "can't be empty")
     @Pattern(regexp = "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
@@ -46,59 +52,6 @@ public class Book {
         this.title = title;
         this.authorId = authorId;
         this.yearOfWriting = yearOfWriting;
-        this.unitsInStock = unitsInStock;
-    }
-
-    public Book() {
-
-    }
-
-    // GETTERS, SETTERS
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthorLastName() {
-        return authorLastName;
-    }
-
-    public void setAuthorLastName(String authorLastName) {
-        this.authorLastName = authorLastName;
-    }
-
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
-
-    public int getYearOfWriting() {
-        return yearOfWriting;
-    }
-
-    public void setYearOfWriting(int yearOfWriting) {
-        this.yearOfWriting = yearOfWriting;
-    }
-
-    public int getUnitsInStock() {
-        return unitsInStock;
-    }
-
-    public void setUnitsInStock(int unitsInStock) {
         this.unitsInStock = unitsInStock;
     }
 }

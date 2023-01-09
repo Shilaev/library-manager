@@ -1,10 +1,16 @@
 package shilaev.librarymanager.models.rent;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.sql.Date;
 
+@Setter @Getter
+@NoArgsConstructor
 public class Rent {
     @NotNull(message = "can't be null")
     private int id;
@@ -12,7 +18,7 @@ public class Rent {
     @NotNull(message = "can't be null")
     private int clientId;
 
-//    @NotEmpty(message = "can't be empty")
+    @NotEmpty(message = "can't be empty")
     @Pattern(regexp = "^(?:ISBN(?:-1[03])?:? )?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$|97[89][0-9]{10}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)(?:97[89][- ]?)?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]$",
             message = "must be in ISBN format")
     private String bookIsbn;
@@ -27,49 +33,6 @@ public class Rent {
         this.clientId = clientId;
         this.bookIsbn = bookIsbn;
         this.start = start;
-        this.end = end;
-    }
-
-    public Rent() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getBookIsbn() {
-        return bookIsbn;
-    }
-
-    public void setBookIsbn(String bookIsbn) {
-        this.bookIsbn = bookIsbn;
-    }
-
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
         this.end = end;
     }
 }
