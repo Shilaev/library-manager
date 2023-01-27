@@ -83,3 +83,4 @@ nb-configuration.xml
 .DS_Store
 D:\PetProjects\LibraryManager\src\main\webapp\resources\database.properties
 /src/main/webapp/resources/database.properties
+/src/main/webapp/resources/hibernate.properties

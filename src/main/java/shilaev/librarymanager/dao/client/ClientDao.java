@@ -1,8 +1,11 @@
 package shilaev.librarymanager.dao.client;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import shilaev.librarymanager.models.client.ClientRowMapper;
 import shilaev.librarymanager.models.client.Client;
 
@@ -11,10 +14,12 @@ import java.util.List;
 @Component
 public class ClientDao {
     private final JdbcTemplate jdbcTemplate;
+    private final SessionFactory sessionFactory;
 
     @Autowired
-    public ClientDao(JdbcTemplate jdbcTemplate) {
+    public ClientDao(JdbcTemplate jdbcTemplate, SessionFactory sessionFactory) {
         this.jdbcTemplate = jdbcTemplate;
+        this.sessionFactory = sessionFactory;
     }
 
     // CREATE
@@ -37,10 +42,16 @@ public class ClientDao {
     }
 
     // READ
+    @Transactional
     public List<Client> selectAllClients() {
-        String selectAllFromClients = "select * from clients;";
-        return jdbcTemplate.query(selectAllFromClients, new ClientRowMapper());
+        Session session = sessionFactory.getCurrentSession();
+        List<Client> clientList = session.createQuery("select c from Client c", Client.class).getResultList();
+
+//        String selectAllFromClients = "select * from clients;";
+//        return jdbcTemplate.query(selectAllFromClients, new ClientRowMapper());
+        return clientList;
     }
+
 
     public Client selectClientById(int id) {
         String selectClientById = "select * from clients where id = ?;";
