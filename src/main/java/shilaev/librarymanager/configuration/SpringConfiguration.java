@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -23,9 +25,10 @@ import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
 
+//@EnableJpaRepositories("shilaev.librarymanager.repositories")
+@EnableTransactionManagement
 @Configuration
 @EnableWebMvc
-@EnableTransactionManagement
 @ComponentScan("shilaev")
 @PropertySources({
         @PropertySource("classpath:database.properties"),
@@ -76,16 +79,6 @@ public class SpringConfiguration implements WebMvcConfigurer {
 
     // JDBC CONFIGURATION
     @Bean
-    public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver")));
-        dataSource.setUrl(environment.getProperty("url"));
-        dataSource.setUsername(environment.getProperty("user"));
-        dataSource.setPassword(environment.getProperty("password"));
-        return dataSource;
-    }
-
-    @Bean
     public JdbcTemplate jdbcTemplate() {
         return new JdbcTemplate(dataSource());
     }
@@ -93,7 +86,7 @@ public class SpringConfiguration implements WebMvcConfigurer {
 
     // HIBERNATE CONFIGURATION
     @Bean
-    public DataSource hibernateDataSource() {
+    public DataSource dataSource() {
         DriverManagerDataSource hibernateDataSource = new DriverManagerDataSource();
         hibernateDataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("hibernate.connection.driver_class")));
         hibernateDataSource.setUrl(environment.getProperty("hibernate.connection.url"));
@@ -113,7 +106,7 @@ public class SpringConfiguration implements WebMvcConfigurer {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(hibernateDataSource());
+        sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("shilaev.librarymanager.models");
         sessionFactory.setHibernateProperties(hibernateProperties());
 
@@ -121,11 +114,37 @@ public class SpringConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    public PlatformTransactionManager hibernateTransactionManager() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(){
+        final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(dataSource());
+        em.setPackagesToScan("shilaev.librarymanager.models");
+
+        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        em.setJpaVendorAdapter(vendorAdapter);
+        em.setJpaProperties(hibernateProperties());
+
+        return em;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory().getObject());
 
         return transactionManager;
     }
     // HIBERNATE CONFIGURATION
+
+    // old data source
+//@Bean
+//public DataSource dataSource() {
+//    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//    dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver")));
+//    dataSource.setUrl(environment.getProperty("url"));
+//    dataSource.setUsername(environment.getProperty("user"));
+//    dataSource.setPassword(environment.getProperty("password"));
+//    return dataSource;
+//}
 }
+
+
