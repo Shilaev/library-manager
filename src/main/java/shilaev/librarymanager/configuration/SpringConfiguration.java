@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -27,18 +26,20 @@ import java.util.Objects;
 import java.util.Properties;
 
 @Configuration
-@EnableWebMvc
-@EnableTransactionManagement
 @ComponentScan("shilaev")
 @PropertySources({
         @PropertySource("classpath:database.properties"),
         @PropertySource("classpath:hibernate.properties")
 })
+@EnableTransactionManagement
+//@EnableJpaRepositories("shilaev.librarymanager.repositories")
+@EnableWebMvc
 public class SpringConfiguration implements WebMvcConfigurer {
 
     private final ApplicationContext applicationContext;
     private final Environment environment;
 
+    // SPRING MVC //
     @Autowired
     public SpringConfiguration(ApplicationContext applicationContext, Environment environment) {
         this.applicationContext = applicationContext;
@@ -61,8 +62,9 @@ public class SpringConfiguration implements WebMvcConfigurer {
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
+    // SPRING MVC //
 
-    // THYMELEAF CONFIGURATION
+    // THYMELEAF //
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
@@ -70,33 +72,23 @@ public class SpringConfiguration implements WebMvcConfigurer {
         registry.viewResolver(resolver);
     }
 
-    // RESOURCES PATH CONFIGURATION (for css and etc.)
+    // RESOURCES PATH (for css and etc.) //
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/");
     }
 
-    // JDBC CONFIGURATION
-//    @Bean
-//    public DataSource dataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver")));
-//        dataSource.setUrl(environment.getProperty("url"));
-//        dataSource.setUsername(environment.getProperty("user"));
-//        dataSource.setPassword(environment.getProperty("password"));
-//        return dataSource;
-//    }
-
+    // JDBC //
     @Bean
     public JdbcTemplate jdbcTemplate() {
-        return new JdbcTemplate(dataSource());
+        return new JdbcTemplate(hibernateDataSource());
     }
-    // JDBC CONFIGURATION
+    // JDBC //
 
-    // HIBERNATE CONFIGURATION
+    // HIBERNATE //
     @Bean
-    public DataSource dataSource() {
+    public DataSource hibernateDataSource() {
         DriverManagerDataSource hibernateDataSource = new DriverManagerDataSource();
         hibernateDataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("hibernate.connection.driver_class")));
         hibernateDataSource.setUrl(environment.getProperty("hibernate.connection.url"));
@@ -116,35 +108,51 @@ public class SpringConfiguration implements WebMvcConfigurer {
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setDataSource(hibernateDataSource());
         sessionFactory.setPackagesToScan("shilaev.librarymanager.models");
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
     }
+    // HIBERNATE //
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
-        em.setDataSource(dataSource());
-        em.setPackagesToScan("shilaev.librarymanager.models");
-
-        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        em.setJpaVendorAdapter(vendorAdapter);
-        em.setJpaProperties(hibernateProperties());
-
-        return em;
-    }
+    // JPA//
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+//        final LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+//        em.setDataSource(hibernateDataSource());
+//        em.setPackagesToScan("shilaev.librarymanager.models");
+//
+//        final HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//        em.setJpaVendorAdapter(vendorAdapter);
+//        em.setJpaProperties(hibernateProperties());
+//
+//        return em;
+//    }
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-//        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-//        transactionManager.setSessionFactory(sessionFactory().getObject());
-//
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+        // FOR HIBERNATE
+        HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+        transactionManager.setSessionFactory(sessionFactory().getObject());
+
+        // FOR JPA
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
 
         return transactionManager;
     }
-    // HIBERNATE CONFIGURATION
+    // JPA //
 }
+
+// OLD CODE FORE TUTORIAL //
+//    @Bean
+//    public DataSource dataSource() {
+//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+//        dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver")));
+//        dataSource.setUrl(environment.getProperty("url"));
+//        dataSource.setUsername(environment.getProperty("user"));
+//        dataSource.setPassword(environment.getProperty("password"));
+//        return dataSource;
+//    }
+// OLD CODE FORE TUTORIAL //
