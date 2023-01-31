@@ -1,5 +1,6 @@
 package shilaev.librarymanager.dao.client;
 
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +47,10 @@ public class ClientDao {
     public List<Client> selectAllClients() {
         Session session = sessionFactory.getCurrentSession();
         List<Client> clientList = session.createQuery("select c from Client c", Client.class).getResultList();
+        return clientList;
 
 //        String selectAllFromClients = "select * from clients;";
 //        return jdbcTemplate.query(selectAllFromClients, new ClientRowMapper());
-        return clientList;
     }
 
 
